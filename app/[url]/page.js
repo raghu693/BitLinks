@@ -11,8 +11,6 @@ export default async function page({ params }) {
   if (doc) {
     redirect(doc.url);
   } else {
-    redirect(`${process.env.NEXT_PUBLIC_HOST}`);
+    redirect(`https://bit-links-kohl.vercel.app`);
   }
-
-  return <div>{url}</div>;
 }
