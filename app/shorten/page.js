@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-const page = () => {
+const Page = () => {
   const [url, setUrl] = useState("");
   const [shortURL, setShortURL] = useState("");
   const [generated, setGenerated] = useState(false);
@@ -70,4 +70,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
