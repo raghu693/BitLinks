@@ -12,8 +12,8 @@ const Page = () => {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      url,
-      shortUrl,
+      url: url,
+      shortUrl: shortURL,
     });
     
 
