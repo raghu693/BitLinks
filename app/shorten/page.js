@@ -49,7 +49,7 @@ const Page = () => {
       }),
     });
     console.log(data);
-    const result = await data.json();
+    const result = await data.body();
     console.log(result);
     alert(result.message);
     setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`);
