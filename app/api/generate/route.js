@@ -1,8 +1,9 @@
 import clientPromise from "@/lib/mongodb";
+import { NextRequest } from "next/server";
 
-export async function POST(Request) {
+export async function POST() {
   try {
-    let data = await Request.json();
+    let data = await NextRequest.json();
     let client = await clientPromise;
     let db = client.db("BitLinks");
     const collection = db.collection("url");
