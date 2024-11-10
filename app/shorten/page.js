@@ -8,35 +8,54 @@ const Page = () => {
   const [shortURL, setShortURL] = useState("");
   const [generated, setGenerated] = useState(false);
 
-  const generate = () => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+  const generate = async () => {
+    // const myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-      url: url,
-      shortUrl: shortURL,
+    // const raw = JSON.stringify({
+    //   url: url,
+    //   shortUrl: shortURL,
+    // });
+
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: "follow",
+    // };
+
+    // fetch("/api/generate", requestOptions)
+    //   .then((response) => {
+    //     console.log(response);
+    //     response.json();
+    //   })
+    //   .then((result) => {
+    //     alert(result.message);
+    //     setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`);
+    //     console.log(generated);
+    //     setShortURL("");
+    //     setUrl("");
+    //   })
+    //   .catch((error) => console.error(error));
+
+    const data = await fetch("api/generate", {
+      method: POST,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        url,
+        shortURL,
+      }),
     });
-
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch("/api/generate", requestOptions)
-      .then((response) => {
-        console.log(response);
-        response.json();
-      })
-      .then((result) => {
-        alert(result.message);
-        setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`);
-        console.log(generated);
-        setShortURL("");
-        setUrl("");
-      })
-      .catch((error) => console.error(error));
+    console.log(data);
+    const result = await data.json();
+    console.log(result);
+    alert(result.message);
+    setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`);
+    console.log(generated);
+    setShortURL("");
+    setUrl("");
   };
 
   return (
