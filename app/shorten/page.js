@@ -16,6 +16,7 @@ const Page = () => {
       url: url,
       shortUrl: shortURL,
     });
+    console.log(raw);
 
     const requestOptions = {
       method: "POST",
