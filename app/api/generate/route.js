@@ -1,16 +1,15 @@
 import clientPromise from "@/lib/mongodb";
-import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export async function POST(Request) {
+export async function POST(Request, Response) {
   console.log(await Request);
   let data = await Request.json();
   let client = await clientPromise;
   let db = client.db("BitLinks");
   const collection = db.collection("url");
-
   const doc = await collection.findOne({ shortUrl: data.shortUrl });
   if (doc) {
-    return NextResponse.json({
+    return Response.json({
       success: false,
       error: true,
       message: "Url Already Exists!",
@@ -22,7 +21,7 @@ export async function POST(Request) {
     shortUrl: data.shortUrl,
   });
 
-  return NextResponse.json({
+  return Response.json({
     Request: (await Request),
     success: true,
     error: false,
