@@ -48,12 +48,12 @@ const Page = () => {
         shortURL,
       }),
     });
-    console.log(data);
-    const result = await data.body();
-    console.log(result);
+    // console.log(data);
+    const result = await data.json();
+    // console.log(result);
     alert(result.message);
     setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`);
-    console.log(generated);
+    // console.log(generated);
     setShortURL("");
     setUrl("");
   };
