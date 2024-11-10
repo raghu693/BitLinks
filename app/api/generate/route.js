@@ -21,6 +21,8 @@ export async function POST(req) {
     shortUrl: data.shortUrl
   })
 
+  console.log(result);
+
   return Response.json({
     success: true,
     error: false,

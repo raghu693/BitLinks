@@ -16,7 +16,6 @@ const Page = () => {
       url: url,
       shortUrl: shortURL,
     });
-    console.log(raw);
 
     const requestOptions = {
       method: "POST",
@@ -28,7 +27,9 @@ const Page = () => {
     fetch("/api/generate", requestOptions)
       .then((response) => response.json())
       .then((result) => {
+        alert(result.message)
         setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`)
+        console.log(generated)
         setShortURL("")
         setUrl("");
       })
