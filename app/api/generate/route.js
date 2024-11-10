@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   let data = await req.json();
@@ -9,7 +10,7 @@ export async function POST(req) {
 
   const doc = await collection.findOne({ shortUrl: data.shortUrl });
   if (doc) {
-    return Response.json({
+    NextResponse.json({
       success: false,
       error: true,
       message: "Url Already Exists!",
@@ -23,7 +24,7 @@ export async function POST(req) {
 
   console.log(result);
 
-  return Response.json({
+  NextResponse.json({
     success: true,
     error: false,
     message: "Url Generated Successfully",
