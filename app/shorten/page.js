@@ -25,12 +25,15 @@ const Page = () => {
     };
 
     fetch("/api/generate", requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        response.json();
+      })
       .then((result) => {
-        alert(result.message)
-        setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`)
-        console.log(generated)
-        setShortURL("")
+        alert(result.message);
+        setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shortURL}`);
+        console.log(generated);
+        setShortURL("");
         setUrl("");
       })
       .catch((error) => console.error(error));
@@ -61,13 +64,16 @@ const Page = () => {
           Generate
         </button>
       </div>
-      {
-        generated && <>
-          <span className="font-bold text-lg">Your Link</span><code>
-            <Link target="_blank" href={generated}>{generated}</Link>
+      {generated && (
+        <>
+          <span className="font-bold text-lg">Your Link</span>
+          <code>
+            <Link target="_blank" href={generated}>
+              {generated}
+            </Link>
           </code>
         </>
-      }
+      )}
     </div>
   );
 };
