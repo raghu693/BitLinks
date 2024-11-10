@@ -39,7 +39,7 @@ const Page = () => {
     //   .catch((error) => console.error(error));
 
     const data = await fetch("api/generate", {
-      method: POST,
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
